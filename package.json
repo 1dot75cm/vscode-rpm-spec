@@ -1,0 +1,34 @@
+{
+	"name": "RPMSpec",
+	"displayName": "RPM Spec",
+	"description": "RPM Spec support for Visual Studio Code",
+	"version": "0.1.0",
+	"license": "MIT",
+	"publisher": "1dot75cm",
+	"engines": {
+		"vscode": "^0.10.1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/1dot75cm/vscode-rpm-spec.git"
+	},
+	"bugs": {
+		"url": "https://github.com/1dot75cm/vscode-rpm-spec/issues"
+	},
+	"categories": [
+		"Languages"
+	],
+	"contributes": {
+		"languages": [{
+			"id": "RPMSpec",
+			"aliases": ["RPM Spec", "RPMSpec"],
+			"extensions": [".spec"],
+			"configuration": "./RPMSpec.configuration.json"
+		}],
+		"grammars": [{
+			"language": "RPMSpec",
+			"scopeName": "source.spec",
+			"path": "./syntaxes/spec.json"
+		}]
+	}
+}
