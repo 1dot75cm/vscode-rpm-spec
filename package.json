@@ -6,7 +6,7 @@
 	"license": "MIT",
 	"publisher": "1dot75cm",
 	"engines": {
-		"vscode": "^0.10.1"
+		"vscode": "^1.0.0"
 	},
 	"repository": {
 		"type": "git",
@@ -18,6 +18,10 @@
 	"categories": [
 		"Languages"
 	],
+	"activationEvents": [
+        "onLanguage:RPMSpec"
+    ],
+    "main": "./out/src/extension",
 	"contributes": {
 		"languages": [{
 			"id": "RPMSpec",
@@ -29,6 +33,28 @@
 			"language": "RPMSpec",
 			"scopeName": "source.spec",
 			"path": "./syntaxes/spec.json"
-		}]
-	}
+		}],
+		"configuration": {
+			"title": "RPMSpec configuration",
+			"properties": {
+				"rpmspec.lint": {
+					"type": "boolean",
+					"default": true,
+					"description": "Lint RPMSpec files with rpmlint"
+				}
+			}
+		}
+	},
+    "scripts": {
+        "vscode:prepublish": "tsc -p ./",
+        "compile": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install"
+    },
+    "devDependencies": {
+        "typescript": "^2.0.3",
+        "vscode": "^1.0.0",
+        "mocha": "^3.1.2",
+        "@types/node": "^6.0.45",
+        "@types/mocha": "^2.2.32"
+    }
 }
