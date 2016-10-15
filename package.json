@@ -2,6 +2,7 @@
 	"name": "RPMSpec",
 	"displayName": "RPM Spec",
 	"description": "RPM Spec support for Visual Studio Code",
+	"icon": "images/rpm.png",
 	"version": "0.1.0",
 	"license": "MIT",
 	"publisher": "1dot75cm",
