@@ -231,7 +231,7 @@
   "architectures": {
     "patterns": [
         {
-            "match": "(?:noarch|i386|i586|i686|x86_64|local)",
+            "match": "(?:noarch|i386|i586|i686|x86_64|ia64|local)",
             "name": "constant.language.spec"
         },
         {
