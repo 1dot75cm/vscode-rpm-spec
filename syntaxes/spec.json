@@ -235,7 +235,7 @@
             "name": "constant.language.spec"
         },
         {
-            "match": "(?:s390x|s390|armv6l|armv7l|aarch64)",
+            "match": "(?:s390x|s390|armv6l|armv7l|aarch64|alpha)",
             "name": "constant.language.spec"
         },
         {
