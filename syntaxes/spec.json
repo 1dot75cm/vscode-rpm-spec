@@ -231,15 +231,15 @@
   "architectures": {
     "patterns": [
         {
-            "match": "(?:noarch|i386|i586|i686|x86_64|local)",
+            "match": "(?:noarch|i386|i586|i686|x86_64|ia64|local)",
             "name": "constant.language.spec"
         },
         {
-            "match": "(?:s390x|armv6l|armv7l|aarch64)",
+            "match": "(?:s390x|s390|armv6l|armv7hl|armv7l|aarch64|alpha|sparc64|sparcv9|sparc)",
             "name": "constant.language.spec"
         },
         {
-            "match": "(?:ppc64p7|ppc64leppc64|ppc)",
+            "match": "(?:ppc64p7|ppc64le|ppc64|ppc)",
             "name": "constant.language.spec"
         }
     ]
