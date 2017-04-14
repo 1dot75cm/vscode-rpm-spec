@@ -36,14 +36,11 @@ function lint(document: vscode.TextDocument) {
     let array: vscode.Diagnostic[] = [];
 
     reader.on('line', (line: string) => {
-        let match = line.match(new RegExp(`^${document.uri.fsPath}:\\s*?(\\S):\\s*?(.+)`));
-        let linterLine = line.match(/line\s*?(\d+)/);
+        let match = line.match(new RegExp(`^${document.uri.fsPath}:(\\d+?):\\s*?(\\S)+?:\\s*?(.+)`));
 
         if (match != null) {
-            let range = linterLine != null
-                ? document.lineAt(Number(linterLine[1]) - 1).range
-                : new vscode.Range(0, 0, 0, 0);
-            let diagnostic = new vscode.Diagnostic(range, match[2], SEVERITY[match[1]]);
+            let diagnostic = new vscode.Diagnostic(document.lineAt(Number(match[1]) - 1).range,
+                match[3], SEVERITY[match[2]]);
             array.push(diagnostic);
         }
     });
