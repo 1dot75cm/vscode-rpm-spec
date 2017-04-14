@@ -1,7 +1,7 @@
 {
 	"name": "rpm-spec",
-	"displayName": "RPM Spec",
-	"description": "RPM Spec support for Visual Studio Code",
+	"displayName": "RPM spec",
+	"description": "RPM spec support for Visual Studio Code",
 	"version": "0.1.0",
 	"license": "MIT",
 	"publisher": "LaurentTreguier",
@@ -28,7 +28,7 @@
 			{
 				"id": "rpm-spec",
 				"aliases": [
-					"RPM Spec",
+					"RPM spec",
 					"RPMSpec"
 				],
 				"extensions": [
@@ -45,12 +45,12 @@
 			}
 		],
 		"configuration": {
-			"title": "RPMSpec configuration",
+			"title": "RPM spec configuration",
 			"properties": {
 				"rpmspec.lint": {
 					"type": "boolean",
 					"default": true,
-					"description": "Lint RPMSpec files with rpmlint"
+					"description": "Lint RPM spec files with rpmlint"
 				}
 			}
 		}
