@@ -5,7 +5,7 @@ import * as rl from 'readline';
 import * as vscode from 'vscode';
 
 const MODE = {
-    language: 'RPMSpec',
+    language: 'rpm-spec',
     scheme: 'file'
 };
 

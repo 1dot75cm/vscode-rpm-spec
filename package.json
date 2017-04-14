@@ -1,39 +1,49 @@
 {
-	"name": "RPMSpec",
+	"name": "rpm-spec",
 	"displayName": "RPM Spec",
 	"description": "RPM Spec support for Visual Studio Code",
 	"version": "0.1.0",
 	"license": "MIT",
-	"publisher": "1dot75cm",
+	"publisher": "LaurentTreguier",
 	"engines": {
 		"vscode": "^1.0.0"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/1dot75cm/vscode-rpm-spec.git"
+		"url": "https://github.com/LaurentTreguier/vscode-rpm-spec.git"
 	},
 	"bugs": {
-		"url": "https://github.com/1dot75cm/vscode-rpm-spec/issues"
+		"url": "https://github.com/LaurentTreguier/vscode-rpm-spec/issues"
 	},
 	"categories": [
-		"Languages"
+		"Languages",
+		"Linters"
 	],
 	"activationEvents": [
-		"onLanguage:RPMSpec"
+		"onLanguage:rpm-spec"
 	],
 	"main": "./out/src/extension",
 	"contributes": {
-		"languages": [{
-			"id": "RPMSpec",
-			"aliases": ["RPM Spec", "RPMSpec"],
-			"extensions": [".spec"],
-			"configuration": "./RPMSpec.configuration.json"
-		}],
-		"grammars": [{
-			"language": "RPMSpec",
-			"scopeName": "source.spec",
-			"path": "./syntaxes/spec.json"
-		}],
+		"languages": [
+			{
+				"id": "rpm-spec",
+				"aliases": [
+					"RPM Spec",
+					"RPMSpec"
+				],
+				"extensions": [
+					".spec"
+				],
+				"configuration": "./rpm-spec.configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "rpm-spec",
+				"scopeName": "source.spec",
+				"path": "./syntaxes/spec.json"
+			}
+		],
 		"configuration": {
 			"title": "RPMSpec configuration",
 			"properties": {
@@ -51,10 +61,10 @@
 		"postinstall": "node ./node_modules/vscode/bin/install"
 	},
 	"devDependencies": {
-		"typescript": "^2.0.3",
-		"vscode": "^1.0.0",
-		"mocha": "^3.1.2",
-		"@types/node": "^6.0.45",
-		"@types/mocha": "^2.2.32"
+		"typescript": "^2.2.2",
+		"vscode": "^1.1.0",
+		"mocha": "^3.2.0",
+		"@types/node": "^7.0.12",
+		"@types/mocha": "^2.2.40"
 	}
 }
