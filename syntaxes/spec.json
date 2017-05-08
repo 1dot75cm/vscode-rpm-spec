@@ -402,7 +402,7 @@
                     "name": "support.function.spec"
                 },
                 {
-                    "match": "^%\\{?(?:makeinstall|make_jobs|update_menus|clean_menus)\\}?",
+                    "match": "^%\\{?(?:make_build|make_install|makeinstall|make_jobs|update_menus|clean_menus)\\}?",
                     "name": "support.function.spec"
                 }
             ]
