@@ -17,7 +17,7 @@
         "url": "https://github.com/LaurentTreguier/vscode-rpm-spec/issues"
     },
     "categories": [
-        "Languages",
+        "Programming Languages",
         "Linters"
     ],
     "activationEvents": [
@@ -63,11 +63,11 @@
         "postinstall": "node ./node_modules/vscode/bin/install"
     },
     "devDependencies": {
-        "@types/mocha": "^5.2.0",
-        "@types/node": "^7.x.x",
+        "@types/mocha": "^5.2.5",
+        "@types/node": "^8.10.38",
         "mocha": "^5.2.0",
-        "typescript": "^2.8.3",
-        "vsce": "^1.41.0",
-        "vscode": "^1.1.18"
+        "typescript": "^3.1.6",
+        "vsce": "^1.53.2",
+        "vscode": "^1.1.22"
     }
 }
