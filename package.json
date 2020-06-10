@@ -53,6 +53,11 @@
                     "type": "boolean",
                     "default": true,
                     "description": "Lint RPM spec files with rpmlint"
+                },
+                "rpmspec.rpmlintPath": {
+                    "type": "string",
+                    "default": "rpmlint",
+                    "description": "Path to 'rpmlint' command"
                 }
             }
         }

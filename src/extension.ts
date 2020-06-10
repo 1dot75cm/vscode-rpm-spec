@@ -16,9 +16,14 @@ const SEVERITY = {
 
 let diagnostics: vscode.DiagnosticCollection;
 
-function checkSanity() {
+interface RPMLintContext {
+    path: string,
+    options: cp.SpawnOptions,
+}
+
+function checkSanity(ctx: RPMLintContext) {
     return new Promise((resolve) => {
-        cp.spawn('rpmlint', ['--help'])
+        cp.spawn(ctx.path, ['--help'], ctx.options)
             .on('exit', resolve)
             .on('error', (error) => {
                 vscode.window.showWarningMessage('rpmlint cannot be launched: ' + error);
@@ -26,21 +31,31 @@ function checkSanity() {
     });
 }
 
-function lint(document: vscode.TextDocument) {
+function lint(ctx: RPMLintContext, document: vscode.TextDocument) {
     if (document.languageId != MODE.language) {
         return;
     }
 
-    let linter = cp.spawn('rpmlint', [document.uri.fsPath], { env: { 'LANG': 'C' } });
-    let reader = rl.createInterface(linter.stdout, null);
+    const filePath = vscode.workspace.asRelativePath(document.uri.fsPath)
+
+    let linter = cp.spawn(ctx.path, [filePath], ctx.options);
+    let reader = rl.createInterface({ input: linter.stdout });
     let array: vscode.Diagnostic[] = [];
 
-    reader.on('line', (line: string) => {
-        let match = line.match(new RegExp(`^${document.uri.fsPath}:(\\d+?):\\s*?(\\S)+?:\\s*?(.+)`));
+    const escapedFilePath = filePath.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const diagnosticPattern = new RegExp(`^${escapedFilePath}:(?:(?<line>\\d+):)?\\s*(?<severity>\\S)+:\\s*(?<body>.+)$`);
 
-        if (match != null) {
-            let diagnostic = new vscode.Diagnostic(document.lineAt(Number(match[1]) - 1).range,
-                match[3], SEVERITY[match[2]]);
+    reader.on('line', (line: string) => {
+        const match = diagnosticPattern.exec(line);
+
+        if (match !== null) {
+            const diagnosticRange: vscode.Range = (match.groups.line === undefined)
+                ? new vscode.Range(0, 0, 0, 0)
+                : document.lineAt(Number(match.groups.line) - 1).range;
+
+            let diagnostic = new vscode.Diagnostic(
+                diagnosticRange, match.groups.body, SEVERITY[match.groups.severity]);
+
             array.push(diagnostic);
         }
     });
@@ -51,13 +66,24 @@ function lint(document: vscode.TextDocument) {
 }
 
 export function activate(context: vscode.ExtensionContext) {
-    checkSanity().then((exitCode) => {
+    const linterContext: RPMLintContext = {
+        path: vscode.workspace.getConfiguration().get('rpmspec.rpmlintPath'),
+        options: {
+            env: {
+                'LANG': 'C',
+                'PATH': process.env['PATH']
+            },
+            cwd: vscode.workspace.rootPath,
+        }
+    };
+
+    checkSanity(linterContext).then((exitCode) => {
         if (!exitCode && vscode.workspace.getConfiguration().get('rpmspec.lint')) {
             diagnostics = vscode.languages.createDiagnosticCollection();
 
-            vscode.workspace.onDidOpenTextDocument(lint);
-            vscode.workspace.onDidSaveTextDocument(lint);
-            vscode.workspace.textDocuments.forEach(lint);
+            vscode.workspace.onDidOpenTextDocument(doc => lint(linterContext, doc));
+            vscode.workspace.onDidSaveTextDocument(doc => lint(linterContext, doc));
+            vscode.workspace.textDocuments.forEach(doc => lint(linterContext, doc));
             vscode.workspace.onDidCloseTextDocument((document) => {
                 diagnostics.delete(document.uri);
             });
