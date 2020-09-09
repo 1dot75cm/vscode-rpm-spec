@@ -69,6 +69,7 @@
     "devDependencies": {
         "@types/node": "^12.12.55",
         "@types/vscode": "^1.48.0",
+        "ovsx": "0.1.0-next.bcce4bc",
         "typescript": "^4.0.2",
         "vsce": "^1.79.5"
     },
