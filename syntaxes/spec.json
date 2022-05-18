@@ -702,7 +702,7 @@
   "modifiers": {
     "patterns": [
       {
-        "match": "^%(?:define|global|undefine|docdir|doc|license)",
+        "match": "^%(?:define|global|undefine|dir|docdir|doc|license)",
         "name": "storage.modifier.spec"
       },
       {
@@ -737,7 +737,8 @@
           }
         }
       }
-    ],
+    ]
+  },
   "conditionals": {
     "patterns": [
       {
@@ -754,7 +755,6 @@
         "include": "source.shell"
       }
     ]
-  }
   },
   "changelogs": {
     "comment": "Set disabled to 1 to turn off syntax highlight of logs",
