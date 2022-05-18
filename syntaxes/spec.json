@@ -737,7 +737,8 @@
           }
         }
       }
-    ],
+    ]
+  },
   "conditionals": {
     "patterns": [
       {
@@ -754,7 +755,6 @@
         "include": "source.shell"
       }
     ]
-  }
   },
   "changelogs": {
     "comment": "Set disabled to 1 to turn off syntax highlight of logs",
