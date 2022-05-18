@@ -702,7 +702,7 @@
   "modifiers": {
     "patterns": [
       {
-        "match": "^%(?:define|global|undefine|docdir|doc|license)",
+        "match": "^%(?:define|global|undefine|dir|docdir|doc|license)",
         "name": "storage.modifier.spec"
       },
       {
